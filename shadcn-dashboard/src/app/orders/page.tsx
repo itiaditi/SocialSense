@@ -38,14 +38,17 @@ const OrdersPage: React.FC = () => {
     <div className="flex flex-col gap-5 w-full">
       <PageTitle title="Theme Changer" />
       <div className="flex-1">
-        <div className="flex justify-between items-center py-3 px-6 bg-gray-50 border-b space-x-6">
-          <h1 className="text-black text-4xl">Themes</h1>
-          <button style={{border:"1px solid gray"}}className=" flex justify-evenly rounded-md items-center pt-2 pb-2 pl-2 pr-2">Aditi Dhiman<div className="ml-4 w-10 h-10 rounded-full bg-slate-700"></div></button>
+        <div className="flex flex-col md:flex-row justify-between items-center py-3 px-6 bg-gray-50 border-b space-y-3 md:space-y-0 md:space-x-6">
+          <h1 className="text-black text-2xl md:text-4xl">Themes</h1>
+          <button style={{border:"1px solid gray"}}className="flex justify-evenly rounded-md items-center pt-2 pb-2 pl-2 pr-2">
+            Aditi Dhiman
+            <div className="ml-4 w-10 h-10 rounded-full bg-slate-700"></div>
+          </button>
         </div>
         <main>
-          <div className="flex m-4 p-8 justify-between items-center bg-gray-300 rounded-md shadow-sm">
-            <div className="ml-4 rounded-md">Apply a Skin to your profile</div>
-            <div className="flex justify-evenly gap-4">
+          <div className="flex flex-col md:flex-row m-4 p-4 md:p-8 justify-between items-center bg-gray-300 rounded-md shadow-sm">
+            <div className="ml-4 rounded-md text-lg md:text-2xl font-bold">Apply a Skin to your profile</div>
+            <div className="flex justify-evenly gap-4 mt-4 md:mt-0">
               <button style={{ border: "2px solid black" }} className="border pt-2 pb-2 pl-8 pr-8 rounded-md">
                 + Custom
               </button>
@@ -57,10 +60,10 @@ const OrdersPage: React.FC = () => {
               </button>
             </div>
           </div>
-          <div className="flex">
-            <div className="m-4 w-[500px]">
-              <h1>Solids</h1>
-              <div className="grid grid-cols-7 gap-1">
+          <div className="flex flex-col md:flex-row">
+            <div className="m-4 w-full md:w-[500px]">
+              <h1 className="text-lg font-bold">Solids</h1>
+              <div className="grid grid-cols-6 md:grid-cols-7 gap-1">
                 {[
                   "bg-black",
                   "bg-gray-200",
@@ -82,8 +85,8 @@ const OrdersPage: React.FC = () => {
                   />
                 ))}
               </div>
-              <h1>Linear Gradient</h1>
-              <div className="grid grid-cols-7 gap-1">
+              <h1 className="text-lg font-bold">Linear Gradient</h1>
+              <div className="grid grid-cols-6 md:grid-cols-7 gap-2">
                 {[
                   "bg-gradient-to-r from-cyan-500 to-blue-500",
                   "bg-gradient-to-r from-sky-500 to-indigo-500",
@@ -105,8 +108,8 @@ const OrdersPage: React.FC = () => {
                   />
                 ))}
               </div>
-              <h1>Radial Gradient</h1>
-              <div className="grid grid-cols-7 gap-1">
+              <h1 className="text-lg font-bold">Radial Gradient</h1>
+              <div className="grid grid-cols-6 md:grid-cols-7 gap-1">
                 {[
                   "radial-gradient-1",
                   "radial-gradient-2",
@@ -128,8 +131,8 @@ const OrdersPage: React.FC = () => {
                   />
                 ))}
               </div>
-              <h1>Foreground Color</h1>
-              <div className="grid grid-cols-7 gap-1">
+              <h1 className="text-lg font-bold">Foreground Color</h1>
+              <div className="grid grid-cols-3 md:grid-cols-7 gap-1">
                 {["black", "white"].map((color) => (
                   <div
                     key={color}
@@ -142,13 +145,13 @@ const OrdersPage: React.FC = () => {
             <div className="w-full border rounded-lg" id="preview">
               <div
                 className={`w-full ${selectedColor}`}
-                style={{ color: textColor.includes("black") ? "black" : "white" }}
+                style={{ color: textColor.includes("white") ? "white" : "black" }}
               >
-                <div className="p-2 border-dashed rounded-md ">
-                  <div className="font-sans leading-tight min-h-screen bg-grey-lighter p-8">
-                    <div className="max-w-lg mx-auto bg-white rounded-lg overflow-hidden shadow-lg">
+                <div className={`p-2 border-dashed ${selectedColor} rounded-md `}>
+                  <div className="font-sans  leading-tight min-h-screen bg-grey-lighter p-8">
+                    <div className="max-w-lg  mx-auto bg-white rounded-lg overflow-hidden shadow-lg">
                       <div className="bg-cover h-40" style={{backgroundImage: "url('https://images.unsplash.com/photo-1522093537031-3ee69e6b1746?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a634781c01d2dd529412c2d1e2224ec0&auto=format&fit=crop&w=2098&q=80')"}}></div>
-                      <div className="border-black px-4 pb-6">
+                      <div className={`border-black ${selectedColor} px-4 pb-6`}>
                         <div className="text-center sm:text-left sm:flex mb-4">
                           <Image
                             className="h-32 w-32 rounded-full border-4 border-dashed border-slate -mt-16 mr-4"
@@ -166,12 +169,16 @@ const OrdersPage: React.FC = () => {
                           </div>
                           <div className="inline-flex text-grey-dark sm:flex items-center">
                             <svg className="h-5 w-5 text-grey mr-1" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path className="heroicon-ui" d="M5.64 16.36a9 9 0 1 1 12.72 0l-5.65 5.66a1 1 0 0 1-1.42 0l-5.65-5.66zm11.31-1.41a7 7 0 1 0-9.9 0L12 19.9l4.95-4.95zM12 14a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm0-2a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/></svg>
-                            Palampur, Himachal Pradesh
+                            Himachal Pradesh
                           </div>
                           <div className="mt-4 inline-flex text-grey-dark sm:flex items-center rounded-lg" style={{border: "2px dashed #ccc", padding: "12px"}}>
-                            <p>As a seasoned full stack developer, I thrive on crafting robust web applications that seamlessly integrate front-end and back-end technologies. My expertise spans from designing intuitive user interfaces using React and Angular, to building scalable server-side logic with Node.js and Express.With a passion for clean, maintainable code, I continuously explore new technologies and best practices to deliver cutting-edge solutions that meet client needs and exceed expectations.</p>
+                            <p>As a seasoned full stack developer, I thrive on crafting robust web applications that seamlessly integrate front-end and back-end technologies.</p>
                           </div>
+                        <div className="mt-4">
+                          <p>Biography</p>
                         </div>
+                        </div>
+                       
                       </div>
                     </div>
                   </div>

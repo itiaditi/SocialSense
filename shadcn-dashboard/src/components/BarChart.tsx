@@ -89,6 +89,7 @@ const chartData = {
 
 const options = {
   responsive: true,
+  maintainAspectRatio: false,
   plugins: {
     legend: {
       display: false,
@@ -132,8 +133,10 @@ const options = {
 
 export default function BarChart({}: Props) {
   return (
-    <div style={{ width: "100%", height: 250 }}>
-      <Bar data={chartData} options={options} color="yellow" />
+    <div className="w-full h-full min-h-[320px] sm:min-h-[230px] flex items-center justify-center">
+      <div className="w-full h-full">
+        <Bar data={chartData} options={options} />
+      </div>
     </div>
   );
 }

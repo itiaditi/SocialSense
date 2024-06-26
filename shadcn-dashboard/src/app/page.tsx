@@ -12,7 +12,7 @@ import DoughnutChart from "@/components/DoughnutChart";
 const cardData: CardProps[] = [
   {
     label: "Customers",
-    amount: "$45,231.89",
+    amount: "$45,23",
     discription: "+20.1% from last month",
     icon: DollarSign
   },
@@ -24,7 +24,7 @@ const cardData: CardProps[] = [
   },
   {
     label: "Revenue",
-    amount: "+12,234",
+    amount: "+12,23",
     discription: "+19% from last month",
     icon: CreditCard
   },
@@ -44,7 +44,7 @@ export default function Home() {
   return (
     <div className="flex flex-col gap-5  w-full">
       <PageTitle title="Dashboard" />
-      <section className="flex flex-row gap-2">
+      <section className="grid grid-cols-1  gap-4 transition-all lg:grid-cols-2">
       <CardContent className="w-full grid grid-cols-2 gap-4">
         {cardData.map((d, i) => (
           <Card
@@ -57,9 +57,11 @@ export default function Home() {
         ))}
          </CardContent>
          <CardContent>
+          <section className="flex flex-col w-full items-center">
           <p className="p-4 font-semibold">Overview</p>
 
-          <BarChart />
+<BarChart />
+          </section>
         </CardContent>
       </section>
       <section className="grid grid-cols-1  gap-4 transition-all lg:grid-cols-2">
