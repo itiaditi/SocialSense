@@ -7,7 +7,7 @@ import { Nav } from "./ui/nav";
 type Props = {};
 
 import {
-  ShoppingCart,
+  Palette ,
   LayoutDashboard,
   UsersRound,
   Settings,
@@ -49,16 +49,11 @@ export default function SideNavbar({}: Props) {
             icon: LayoutDashboard,
             variant: "default"
           },
-          {
-            title: "Profile",
-            href: "/users",
-            icon: UsersRound,
-            variant: "ghost"
-          },
+          
           {
             title: "Theme ",
-            href: "/orders",
-            icon: ShoppingCart,
+            href: "/theme",
+            icon: Palette,
             variant: "ghost"
           }
         ]}
