@@ -81,7 +81,7 @@ const chartData = {
     {
       label: "Total",
       data: data.map(item => item.total),
-      backgroundColor: "blue",
+      backgroundColor: "orange",
       borderRadius: 4
     }
   ]
@@ -132,8 +132,8 @@ const options = {
 
 export default function BarChart({}: Props) {
   return (
-    <div style={{ width: "100%", height: 350 }}>
-      <Bar data={chartData} options={options} color="orange" />
+    <div style={{ width: "100%", height: 250 }}>
+      <Bar data={chartData} options={options} color="yellow" />
     </div>
   );
 }

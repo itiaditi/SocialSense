@@ -6,68 +6,46 @@ import { DollarSign, Users, CreditCard, Activity } from "lucide-react";
 import Card, { CardContent, CardProps } from "@/components/Card";
 import BarChart from "@/components/BarChart";
 import SalesCard, { SalesProps } from "@/components/SalesCard";
+import LineBar from "@/components/LineBar";
+import DoughnutChart from "@/components/DoughnutChart";
 
 const cardData: CardProps[] = [
   {
-    label: "Total Revenue",
+    label: "Customers",
     amount: "$45,231.89",
     discription: "+20.1% from last month",
     icon: DollarSign
   },
   {
-    label: "Subscriptions",
+    label: "Orders",
     amount: "+2350",
     discription: "+180.1% from last month",
     icon: Users
   },
   {
-    label: "Sales",
+    label: "Revenue",
     amount: "+12,234",
     discription: "+19% from last month",
     icon: CreditCard
   },
   {
-    label: "Active Now",
+    label: "Growth",
     amount: "+573",
     discription: "+201 since last hour",
     icon: Activity
   }
 ];
 
-const uesrSalesData: SalesProps[] = [
-  {
-    name: "Olivia Martin",
-    email: "olivia.martin@email.com",
-    saleAmount: "+$1,999.00"
-  },
-  {
-    name: "Jackson Lee",
-    email: "isabella.nguyen@email.com",
-    saleAmount: "+$1,999.00"
-  },
-  {
-    name: "Isabella Nguyen",
-    email: "isabella.nguyen@email.com",
-    saleAmount: "+$39.00"
-  },
-  {
-    name: "William Kim",
-    email: "will@email.com",
-    saleAmount: "+$299.00"
-  },
-  {
-    name: "Sofia Davis",
-    email: "sofia.davis@email.com",
-    saleAmount: "+$39.00"
-  }
-];
 
+const data = [40, 80, 100, 120];
+const labels = ['15-25 years old', '26-35 years old', '36-45 years old',">45 years old"];
+const colors = ['#f1b505', '#ffa500', '#dba12c',"white"];
 export default function Home() {
   return (
     <div className="flex flex-col gap-5  w-full">
       <PageTitle title="Dashboard" />
-      <section className="grid grid-cols">
-      <CardContent className="w-90 grid grid-cols-2 gap-4">
+      <section className="flex flex-row gap-2">
+      <CardContent className="w-full grid grid-cols-2 gap-4">
         {cardData.map((d, i) => (
           <Card
             key={i}
@@ -86,10 +64,11 @@ export default function Home() {
       </section>
       <section className="grid grid-cols-1  gap-4 transition-all lg:grid-cols-2">
         {/* <CardContent>
-          <p className="p-4 font-semibold">Overview</p>
+         
 
           <BarChart />
         </CardContent> */}
+        <LineBar/>
         <CardContent className="flex justify-between gap-4">
           {/* <section>
             <p>Recent Sales</p>
@@ -97,6 +76,10 @@ export default function Home() {
               You made 265 sales this month.
             </p>
           </section> */}
+           <div style={{ width: '60%', margin: '0 auto' }}>
+      <h1>Customer Segmentation</h1>
+      <DoughnutChart data={data} labels={labels} colors={colors} />
+    </div>
           {/* {uesrSalesData.map((d, i) => (
             <SalesCard
               key={i}
