@@ -1,163 +1,188 @@
 /**
- * eslint-disable @next/next/no-img-element
- *
  * @format
  */
 
-/**
- * eslint-disable @next/next/no-img-element
- *
- * @format
- */
-
-/** @format */
 "use client";
 
-import { DataTable } from "@/components/DataTable";
-import { ColumnDef } from "@tanstack/react-table";
-import React from "react";
+import { useState, useEffect } from "react";
 import PageTitle from "@/components/PageTitle";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
-type Props = {};
-type Payment = {
-  order: string;
-  status: string;
-  lastOrder: string;
-  method: string;
-};
+const OrdersPage: React.FC = () => {
+  const [selectedColor, setSelectedColor] = useState<string>("");
+  const [textColor, setTextColor] = useState<string>("");
 
-const columns: ColumnDef<Payment>[] = [
-  {
-    accessorKey: "order",
-    header: "Order"
-  },
-  {
-    accessorKey: "status",
-    header: "Status",
-    cell: ({ row }) => {
-      return (
-        <div
-          className={cn("font-medium w-fit px-4 py-2 rounded-lg", {
-            "bg-red-200": row.getValue("status") === "Pending",
-            "bg-orange-200": row.getValue("status") === "Processing",
-            "bg-green-200": row.getValue("status") === "Completed"
-          })}
-        >
-          {row.getValue("status")}
-        </div>
-      );
-    }
-  },
-  {
-    accessorKey: "lastOrder",
-    header: "Last Order"
-  },
-  {
-    accessorKey: "method",
-    header: "Method"
-  }
-];
+  useEffect(() => {
+    // Retrieve the saved color from localStorage on component mount
+    const savedColor = localStorage.getItem("selectedColor");
+    if (savedColor) {
+      setSelectedColor(savedColor);
+    } 
+  }, []);
 
-const data: Payment[] = [
-  {
-    order: "ORD001",
-    status: "Pending",
-    lastOrder: "2023-01-15",
-    method: "Credit Card"
-  },
-  {
-    order: "ORD002",
-    status: "Processing",
-    lastOrder: "2023-02-20",
-    method: "PayPal"
-  },
-  {
-    order: "ORD003",
-    status: "Completed",
-    lastOrder: "2023-03-10",
-    method: "Stripe"
-  },
-  {
-    order: "ORD004",
-    status: "Pending",
-    lastOrder: "2023-04-05",
-    method: "Venmo"
-  },
-  {
-    order: "ORD005",
-    status: "Completed",
-    lastOrder: "2023-05-12",
-    method: "Bank Transfer"
-  },
-  {
-    order: "ORD006",
-    status: "Processing",
-    lastOrder: "2023-06-18",
-    method: "Apple Pay"
-  },
-  {
-    order: "ORD007",
-    status: "Completed",
-    lastOrder: "2023-07-22",
-    method: "Google Pay"
-  },
-  {
-    order: "ORD008",
-    status: "Pending",
-    lastOrder: "2023-08-30",
-    method: "Cryptocurrency"
-  },
-  {
-    order: "ORD009",
-    status: "Processing",
-    lastOrder: "2023-09-05",
-    method: "Alipay"
-  },
-  {
-    order: "ORD010",
-    status: "Completed",
-    lastOrder: "2023-10-18",
-    method: "WeChat Pay"
-  },
-  {
-    order: "ORD011",
-    status: "Pending",
-    lastOrder: "2023-11-25",
-    method: "Square Cash"
-  },
-  {
-    order: "ORD012",
-    status: "Completed",
-    lastOrder: "2023-12-08",
-    method: "Zelle"
-  },
-  {
-    order: "ORD013",
-    status: "Processing",
-    lastOrder: "2024-01-15",
-    method: "Stripe"
-  },
-  {
-    order: "ORD014",
-    status: "Completed",
-    lastOrder: "2024-02-20",
-    method: "PayPal"
-  },
-  {
-    order: "ORD015",
-    status: "Pending",
-    lastOrder: "2024-03-30",
-    method: "Credit Card"
-  }
-];
+  const handleColorClick = (color: string) => {
+    setSelectedColor(color);
+  };
 
-export default function OrdersPage({}: Props) {
+  const handleColortext = (color: string) => {
+    setTextColor(color);
+  };
+
+  const handleSaveClick = () => {
+    localStorage.setItem("selectedColor", selectedColor);
+    alert("Color is saved.");
+  };
+
   return (
-    <div className="flex flex-col gap-5  w-full">
+    <div className="flex flex-col gap-5 w-full">
       <PageTitle title="Theme Changer" />
-      <h2>Coming soon</h2>
-      
+      <div className="flex-1">
+        <div className="flex justify-between items-center py-3 px-6 bg-gray-50 border-b space-x-6">
+          <h1 className="text-black text-4xl">Themes</h1>
+          <button style={{border:"1px solid gray"}}className=" flex justify-evenly rounded-md items-center pt-2 pb-2 pl-2 pr-2">Aditi Dhiman<div className="ml-4 w-10 h-10 rounded-full bg-slate-700"></div></button>
+        </div>
+        <main>
+          <div className="flex m-4 p-8 justify-between items-center bg-gray-300 rounded-md shadow-sm">
+            <div className="ml-4 rounded-md">Apply a Skin to your profile</div>
+            <div className="flex justify-evenly gap-4">
+              <button style={{ border: "2px solid black" }} className="border pt-2 pb-2 pl-8 pr-8 rounded-md">
+                + Custom
+              </button>
+              <button
+                className="rounded-md bg-black text-white pt-2 pb-2 pl-8 pr-8"
+                onClick={handleSaveClick}
+              >
+                Save
+              </button>
+            </div>
+          </div>
+          <div className="flex">
+            <div className="m-4 w-[500px]">
+              <h1>Solids</h1>
+              <div className="grid grid-cols-7 gap-1">
+                {[
+                  "bg-black",
+                  "bg-gray-200",
+                  "bg-white",
+                  "bg-blue-500",
+                  "bg-red-500",
+                  "bg-green-500",
+                  "bg-yellow-500",
+                  "bg-purple-500",
+                  "bg-pink-500",
+                  "bg-indigo-500",
+                  "bg-teal-500",
+                  "bg-orange-500",
+                ].map((item) => (
+                  <div
+                    key={item}
+                    className={`w-10 h-10 ${item} border cursor-pointer ${selectedColor === item ? 'border-black' : ''}`}
+                    onClick={() => handleColorClick(item)}
+                  />
+                ))}
+              </div>
+              <h1>Linear Gradient</h1>
+              <div className="grid grid-cols-7 gap-1">
+                {[
+                  "bg-gradient-to-r from-cyan-500 to-blue-500",
+                  "bg-gradient-to-r from-sky-500 to-indigo-500",
+                  "bg-gradient-to-r from-white to-gray-300",
+                  "bg-gradient-to-r from-blue-500 to-green-500",
+                  "bg-gradient-to-r from-red-500 to-yellow-500",
+                  "bg-gradient-to-r from-green-500 to-teal-500",
+                  "bg-gradient-to-r from-yellow-500 to-orange-500",
+                  "bg-gradient-to-r from-purple-500 to-pink-500",
+                  "bg-gradient-to-r from-pink-500 to-red-500",
+                  "bg-gradient-to-r from-indigo-500 to-purple-500",
+                  "bg-gradient-to-r from-teal-500 to-blue-500",
+                  "bg-gradient-to-r from-orange-500 to-red-500",
+                ].map((gradient) => (
+                  <div
+                    key={gradient}
+                    className={`w-10 h-10 ${gradient} border cursor-pointer ${selectedColor === gradient ? 'border-black' : ''}`}
+                    onClick={() => handleColorClick(gradient)}
+                  />
+                ))}
+              </div>
+              <h1>Radial Gradient</h1>
+              <div className="grid grid-cols-7 gap-1">
+                {[
+                  "radial-gradient-1",
+                  "radial-gradient-2",
+                  "radial-gradient-3",
+                  "radial-gradient-4",
+                  "radial-gradient-5",
+                  "radial-gradient-6",
+                  "radial-gradient-7",
+                  "radial-gradient-8",
+                  "radial-gradient-9",
+                  "radial-gradient-10",
+                  "radial-gradient-11",
+                  "radial-gradient-12",
+                ].map((gradient) => (
+                  <div
+                    key={gradient}
+                    className={`w-10 h-10 ${gradient} border cursor-pointer ${selectedColor === gradient ? 'border-black' : ''}`}
+                    onClick={() => handleColorClick(gradient)}
+                  />
+                ))}
+              </div>
+              <h1>Foreground Color</h1>
+              <div className="grid grid-cols-7 gap-1">
+                {["black", "white"].map((color) => (
+                  <div
+                    key={color}
+                    className={`w-10 h-10 bg-${color} border cursor-pointer ${textColor === `text-${color}` ? 'border-black' : ''}`}
+                    onClick={() => handleColortext(`text-${color}`)}
+                  />
+                ))}
+              </div>
+            </div>
+            <div className="w-full border rounded-lg" id="preview">
+              <div
+                className={`w-full ${selectedColor}`}
+                style={{ color: textColor.includes("black") ? "black" : "white" }}
+              >
+                <div className="p-2 border-dashed rounded-md ">
+                  <div className="font-sans leading-tight min-h-screen bg-grey-lighter p-8">
+                    <div className="max-w-lg mx-auto bg-white rounded-lg overflow-hidden shadow-lg">
+                      <div className="bg-cover h-40" style={{backgroundImage: "url('https://images.unsplash.com/photo-1522093537031-3ee69e6b1746?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a634781c01d2dd529412c2d1e2224ec0&auto=format&fit=crop&w=2098&q=80')"}}></div>
+                      <div className="border-black px-4 pb-6">
+                        <div className="text-center sm:text-left sm:flex mb-4">
+                          <Image
+                            className="h-32 w-32 rounded-full border-4 border-dashed border-slate -mt-16 mr-4"
+                            src="/images/profile.jpg" 
+                            alt="Profile Image"
+                            width={128}
+                            height={128}
+                          />
+                        </div>
+
+                        <div className="py-2">
+                          <h3 className="font-bold text-2xl mb-1">Aditi Dhiman</h3>
+                          <div className="inline-flex text-grey-dark sm:flex items-center">
+                            Full Stack Developer
+                          </div>
+                          <div className="inline-flex text-grey-dark sm:flex items-center">
+                            <svg className="h-5 w-5 text-grey mr-1" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path className="heroicon-ui" d="M5.64 16.36a9 9 0 1 1 12.72 0l-5.65 5.66a1 1 0 0 1-1.42 0l-5.65-5.66zm11.31-1.41a7 7 0 1 0-9.9 0L12 19.9l4.95-4.95zM12 14a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm0-2a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/></svg>
+                            Palampur, Himachal Pradesh
+                          </div>
+                          <div className="mt-4 inline-flex text-grey-dark sm:flex items-center rounded-lg" style={{border: "2px dashed #ccc", padding: "12px"}}>
+                            <p>As a seasoned full stack developer, I thrive on crafting robust web applications that seamlessly integrate front-end and back-end technologies. My expertise spans from designing intuitive user interfaces using React and Angular, to building scalable server-side logic with Node.js and Express.With a passion for clean, maintainable code, I continuously explore new technologies and best practices to deliver cutting-edge solutions that meet client needs and exceed expectations.</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
     </div>
   );
-}
+};
+
+export default OrdersPage;

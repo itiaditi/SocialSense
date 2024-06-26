@@ -74,3 +74,54 @@
     @apply bg-background text-foreground;
   }
 }
+
+div{
+	cursor:pointer;
+}
+.radial-gradient-1 {
+  background: radial-gradient(circle, cyan, blue);
+}
+
+.radial-gradient-2 {
+  background: radial-gradient(circle, skyblue, indigo);
+}
+
+.radial-gradient-3 {
+  background: radial-gradient(circle, white, gray);
+}
+
+.radial-gradient-4 {
+  background: radial-gradient(circle, blue, green);
+}
+
+.radial-gradient-5 {
+  background: radial-gradient(circle, red, yellow);
+}
+
+.radial-gradient-6 {
+  background: radial-gradient(circle, green, teal);
+}
+
+.radial-gradient-7 {
+  background: radial-gradient(circle, yellow, orange);
+}
+
+.radial-gradient-8 {
+  background: radial-gradient(circle, purple, pink);
+}
+
+.radial-gradient-9 {
+  background: radial-gradient(circle, pink, red);
+}
+
+.radial-gradient-10 {
+  background: radial-gradient(circle, indigo, purple);
+}
+
+.radial-gradient-11 {
+  background: radial-gradient(circle, teal, blue);
+}
+
+.radial-gradient-12 {
+  background: radial-gradient(circle, orange, red);
+}
