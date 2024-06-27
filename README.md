@@ -77,7 +77,7 @@ Open your browser and visit `http://localhost:3000` to see the application in ac
 
 The application is deployed on Vercel. You can visit the live version at:
 
-- Theme Changer: [SocialSense Theme Changer](https://social-sense-five.vercel.app/orders)
+- Theme Changer: [SocialSense Theme Changer](https://social-sense-five.vercel.app/theme)
 - Real-Time Dashboard: [SocialSense Dashboard](https://social-sense-five.vercel.app/)
 
 ## Usage
